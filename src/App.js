@@ -1,13 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import PokemonDisplay from './components/pokemonDisplay';
 import axios from 'axios';
+import {Routes, Route} from "react-router-dom"
 
 import './App.css';
 
 function App() {
   const [pokemons, getPokemons] = useState('');
   
-  const url = 'http://localhost:8008/pokemon';
+  const url = 'http://localhost:4000/pokemon';
 
   useEffect(() => {
     getAllPokemons();
@@ -23,7 +24,11 @@ function App() {
     .catch(error => console.error(`Error: ${error}`))
   }
   return (
-    <PokemonDisplay pokemons={pokemons}/>
+    <Routes>
+      <Route path="/" element={<PokemonDisplay pokemons={pokemons}/>}/>
+      {/* <Route path="/:id" component={<SinglePokemon pokemons={pokemons}/>}/>
+      <Route path="/:id/:info" component={<PokemonInfo pokemons={pokemons}/>}/> */}
+    </Routes>
   );
 }
 

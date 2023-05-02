@@ -1,12 +1,21 @@
-import React from "react";
+import React, {useState} from "react";
+import {Link} from "react-router-dom"
 
-export default function PokemonDisplay (props) {
-
-    const {pokemons} = props;
-    
-    console.log(pokemons)
-
+export default function PokemonDisplay ({pokemons}) {
     return (
-        <div>Pokemon app</div>
+        <div>
+            <div>Pokemon app</div>
+            <ul>
+                {
+                !pokemons ?
+                <li>"Loading"</li>
+                :
+                pokemons.map(pokemonSingular=>
+                    <li><Link to={`/${pokemonSingular.id}`}>{pokemonSingular.name.english}</Link></li>
+                )}
+            </ul>
+        </div>
+        
+      
     )
 }
